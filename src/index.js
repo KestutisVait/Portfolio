@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import About from './pages/About';
+import Portfolio from './pages/Portfolio';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<App />} />
       <Route path="/me" element={<About />} />
+      <Route path="/portfolio" element={<Portfolio />} />
     </>
   )
 )

@@ -4,21 +4,28 @@
     font-style: normal;
   }
 .nav-button {
+    display: inline-block;
     color : rgb(154, 162, 165);
     font-size: 0.9rem;
     letter-spacing: 0.2rem;
     cursor: pointer;
     transition:  0.3s;
-    transition-timing-function: ease;
+    transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 }
 .nav-button:hover {
     color :rgb(51, 148, 187);
-    font-size: 1.5rem;
+    transform: scale(1.5);
+    margin: 0 10px 0 30px;
 }
 .nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
-    height: fit-content;
+    margin: 0 auto;
+    height: 50px
 }  
+.no-cursor {
+    cursor: default;
+    pointer-events: none;
+}
