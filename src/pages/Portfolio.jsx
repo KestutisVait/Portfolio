@@ -1,7 +1,8 @@
 import'../App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../components/project_card'
 import styled from 'styled-components';
+import Info from '../components/project_info'
 
 const Wrapper = styled.div`
     @media only screen and (max-width: 991px) {
@@ -22,7 +23,21 @@ const Wrapper = styled.div`
         width: fit-content;
     }
  `;
+ const InfoWrapper = styled.div`
+    @media only screen and (min-width: 992px) {
+        position: absolute;
+        top: 6%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 200px;
+        width: 500px;
+        background-color: red;
+    }
+ `;
 const Portfolio = () => {
+
+    const [showInfo, setShowInfo] = useState(false);
+    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         const cards = document.querySelectorAll('.card');
@@ -80,18 +95,27 @@ const Portfolio = () => {
             });
         };
     }, []);
-    
+
     return (
-        <Wrapper className="d-flex flex-nowrap align-items-center justify-content-center">
-            { Array(7).fill(0).map((_, index) => 
-                <Card 
-                    key={index} 
-                    id={index + 1} 
-                    src="https://picsum.photos/600/400" 
-                    alt="project"
-                    className="card rounded m-1"
-                />)}
-        </Wrapper>
+        <>
+            <InfoWrapper>
+                {showInfo && <Info />}
+            </InfoWrapper>   
+            <Wrapper className="d-flex flex-nowrap align-items-center justify-content-center">
+                { Array(7).fill(0).map((_, index) => 
+                    <Card 
+                        key={index} 
+                        id={index + 1} 
+                        src="https://picsum.photos/600/400" 
+                        alt="project"
+                        className="card rounded m-1" 
+                        onClick={() => setClicked(true)}
+                        onMouseEnter={() => {setClicked(false); setShowInfo(true)}}
+                        onMouseLeave={() => {if (!clicked) setShowInfo(false)}}
+                        clicked={clicked}
+                    />)}
+            </Wrapper>
+        </>
     )
 }
 

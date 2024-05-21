@@ -50,36 +50,42 @@ const Card = (props) => {
 
     const handleEnter = (event) => {
         const target_card = event.currentTarget;
+        target_card.style.filter = 'grayscale(0)';
         
         if (screenWidth < 768){
             setShowInfo(true);
             target_card.style.width = '95%';
-            target_card.style.filter = 'grayscale(0)';
         } else if (screenWidth >= 768 && screenWidth < 992) {
             setShowInfo(true);
             target_card.style.width = '85%';
-            target_card.style.filter = 'grayscale(0)';
-        } else {}
+        } else {
+            target_card.style.width = '400px';
+            props.onMouseEnter(target_card);
+        }
 
     }
     const handleLeave = (event) => {
         const target_card = event.currentTarget;
-
+        if (!props.clicked) target_card.style.filter = 'grayscale(1)';
+        
         if (screenWidth < 768) {
             setShowInfo(false);
             target_card.style.width = '80%';
-            target_card.style.filter = 'grayscale(1)';
         } else if (screenWidth >= 768 && screenWidth < 992) {
             setShowInfo(false);
             target_card.style.width = '70%';
-            target_card.style.filter = 'grayscale(1)';
-        } else {}
+        } else {
+            if (!props.clicked)target_card.style.width = '300px';
+            props.onMouseLeave(target_card);
+        }
     }
     const handleClick = (event) => {
-        if (screenWidth <= 768) {
+        if (screenWidth < 992){
             if (!showInfo) handleEnter(event);
             else handleLeave(event);
-        }
+        } else {
+            props.onClick( event.currentTarget );
+        } 
     }
 
     return (

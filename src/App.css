@@ -17,14 +17,16 @@
     0% { transform: scale(3); }
     100% { transform: scale(1);}
 }
+@keyframes scale-in {
+    0% { transform: scale(0); }
+    100% { transform: scale(1);}
+}
 @keyframes slide-in-left {
     0% { transform: translateX(100vw) }
-    /* 0% { transform: translateX(calc(100vw+50%)) } */
     100% { transform: translateX(0); }
 }
 @keyframes slide-in-up {
     0% { transform: translateY(100vh) }
-    /* 0% { transform: translateX(calc(100vw+50%)) } */
     100% { transform: translateY(0); }
 }
 .App {
@@ -79,8 +81,6 @@
     color: rgb(51, 148, 187);
 }
 .wrapper {
-    /* width: 50%;
-    height:100wh; */
     opacity: 0;
 }
 .fade-n-scale {
@@ -91,12 +91,8 @@
 .fade-n-slide {
     animation: 
     fade-in 0.8s cubic-bezier(.97,.08,1,1) forwards, 
-    /* slide-in 0.7s cubic-bezier(.73,1.55,.36,.88) forwards; */
     slide-in-left 0.7s cubic-bezier(.72,-0.05,.71,1.14) forwards;
-    /* slide-in 0.7s cubic-bezier(1,1.49,.38,.89) forwards; */
 }
-
-
 @media screen and (max-width: 600px) {
     .introduction {
         width: 100%;
@@ -132,7 +128,6 @@
         width: 80%;
     }
 }
-
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .wrapper {
