@@ -16,7 +16,6 @@ const CardWrapper = styled.div`
         aspect-ratio: 1.618 / 1;
         filter: grayscale(0);
     }
-
     @media only screen and (max-width: 767px) {
         width: 80%;
         &:hover {
@@ -36,64 +35,34 @@ const CardWrapper = styled.div`
             width: 400px;
         }
     }
-`;  
-
-const CardImage = styled.img`
-        width: 100%;
-        aspect-ratio: 1.618 / 1;
-`;
-
-const Card = (props) => {
-    const screenWidth = window.innerWidth;
+    `;  
+    
+    const CardImage = styled.img`
+    width: 100%;
+    aspect-ratio: 1.618 / 1;
+    `;
+    
+    const Card = (props) => {
+    // const cards = document.querySelectorAll('.card');
+    // const screenWidth = window.innerWidth;
     
     const [showInfo, setShowInfo] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [info, setInfo] = useState({});
 
-    const handleEnter = (event) => {
-        const target_card = event.currentTarget;
-        target_card.style.filter = 'grayscale(0)';
-        
-        if (screenWidth < 768){
-            setShowInfo(true);
-            target_card.style.width = '95%';
-        } else if (screenWidth >= 768 && screenWidth < 992) {
-            setShowInfo(true);
-            target_card.style.width = '85%';
-        } else {
-            target_card.style.width = '400px';
-            props.onMouseEnter(target_card);
-        }
-
-    }
-    const handleLeave = (event) => {
-        const target_card = event.currentTarget;
-        if (!props.clicked) target_card.style.filter = 'grayscale(1)';
-        
-        if (screenWidth < 768) {
-            setShowInfo(false);
-            target_card.style.width = '80%';
-        } else if (screenWidth >= 768 && screenWidth < 992) {
-            setShowInfo(false);
-            target_card.style.width = '70%';
-        } else {
-            if (!props.clicked)target_card.style.width = '300px';
-            props.onMouseLeave(target_card);
-        }
-    }
-    const handleClick = (event) => {
-        if (screenWidth < 992){
-            if (!showInfo) handleEnter(event);
-            else handleLeave(event);
-        } else {
-            props.onClick( event.currentTarget );
-        } 
-    }
-
+    
     return (
-        <CardWrapper id={props.id} className={props.className} onMouseEnter={handleEnter} onMouseLeave={handleLeave} onClick={handleClick}>
-            <CardImage src={props.src} alt={props.alt} />
-            {showInfo && <Info />}
+        <CardWrapper 
+            id={props.id} 
+            className={props.className} 
+            onMouseEnter={props.onMouseEnter} 
+            onMouseLeave={props.onMouseLeave} 
+            onClick={props.onClick}
+        >
+            <CardImage src={props.src} alt={props.alt} className='rounded' />
+            {showInfo && <Info  info={props.info}/>}
         </CardWrapper>
-    )
-}
+    );
+};
 
 export default Card

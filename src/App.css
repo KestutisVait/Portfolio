@@ -93,6 +93,9 @@
     fade-in 0.8s cubic-bezier(.97,.08,1,1) forwards, 
     slide-in-left 0.7s cubic-bezier(.72,-0.05,.71,1.14) forwards;
 }
+.translateX-40 {
+    transform: translateX(-60px)!important;
+}
 @media screen and (max-width: 600px) {
     .introduction {
         width: 100%;

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Card from '../components/project_card'
 import styled from 'styled-components';
 import Info from '../components/project_info'
+import Axios from 'axios';
 
 const Wrapper = styled.div`
     @media only screen and (max-width: 991px) {
@@ -31,52 +32,18 @@ const Wrapper = styled.div`
         transform: translateX(-50%);
         height: 200px;
         width: 500px;
-        background-color: red;
+        text-align: center;
     }
  `;
 const Portfolio = () => {
+    const screenWidth = window.innerWidth;
+    const cards = document.querySelectorAll('.card');
 
     const [showInfo, setShowInfo] = useState(false);
     const [clicked, setClicked] = useState(false);
+    const [info, setInfo] = useState([]);
+    const [targetInfo, setTargetInfo] = useState({});
 
-    useEffect(() => {
-        const cards = document.querySelectorAll('.card');
-
-        cards.forEach(card => {
-            const handleMouseEnter = async (event) => {
-                const target_card = event.currentTarget;
-                const screenWidth = window.innerWidth;
-                
-                if (screenWidth > 992) {
-                    if (target_card.id === '1') {
-                        target_card.style.transform = 'translateX(0)';
-                    } else {
-                        target_card.style.transform = 'translateX(-40px)';
-                    }
-                } 
-                
-                cards.forEach(card => {
-                    if ( screenWidth > 992) {
-                        if (card !== target_card) {
-                            if (target_card.id === '1') {
-                                card.style.transform = 'translateX(0)';
-                            } else {
-                                card.style.transform = 'translateX(-40px)';
-                            }
-                        }
-                    } 
-                });
-            }
-            const handleMouseLeave = (event) => {
-                cards.forEach(card => {
-                    card.style.transform = 'translateX(0)';
-                })
-            }
-            card.addEventListener('mouseenter', handleMouseEnter);
-            card.addEventListener('mouseleave', handleMouseLeave);
-        });
-    },[]);
-            
     useEffect(() => {
         const animationEndHandler = (event) => {
             event.target.style.opacity = 1;
@@ -96,23 +63,112 @@ const Portfolio = () => {
         };
     }, []);
 
+    const handleEnter = (event) => {
+        const target_card = event.currentTarget;
+        target_card.style.filter = 'grayscale(0)';
+        
+        if (screenWidth < 768){
+            setShowInfo(true);
+            target_card.style.width = '95%';
+        } else if (screenWidth >= 768 && screenWidth < 992) {
+            setShowInfo(true);
+            target_card.style.width = '85%';
+        } else {
+            setTargetInfo(info[`${target_card.id - 1}`]);
+            target_card.style.width = '400px';
+            if (target_card.id !== '1') {
+                cards.forEach(card => {
+                    card.classList.add('translateX-40');
+                });
+            };
+            setShowInfo(true);
+            if (!target_card.classList.contains("active")) {
+                setClicked(false);
+                cards.forEach(card => {
+                    if (card.classList.contains("active")) {
+                        card.classList.remove('active')
+                        card.style.width = '300px';
+                        card.style.filter = 'grayscale(1)';
+                    };
+                });
+            };
+        };
+    };
+    const handleLeave = (event) => {
+        const target_card = event.currentTarget;
+        if (!clicked) target_card.style.filter = 'grayscale(1)';
+        
+        if (screenWidth < 768) {
+            setShowInfo(false);
+            target_card.style.width = '80%';
+        } else if (screenWidth >= 768 && screenWidth < 992) {
+            setShowInfo(false);
+            target_card.style.width = '70%';
+        } else {
+            if (!clicked) {
+                setShowInfo(false);
+                target_card.style.width = '300px';
+                if (target_card.id !== '1') {
+                    cards.forEach(card => {
+                        card.classList.remove('translateX-40');
+                    });
+                };
+            };
+        };
+    };
+    const handleClick = (event) => {
+        const target_card = event.currentTarget;
+        setClicked(true)
+        if (screenWidth < 992){
+            if (!showInfo) handleEnter(event);
+            else handleLeave(event);
+        } else {
+            if (target_card.classList.contains("active")) {
+                setClicked(false);
+                handleLeave(event);
+                target_card.style.width = '300px';
+                target_card.style.filter = 'grayscale(1)';
+                target_card.classList.remove('active');
+                cards.forEach(card => {
+                    card.classList.remove('translateX-40');
+                })
+            } else {
+                target_card.classList.add('active');
+                handleEnter(event);
+                setClicked(true);
+            };
+        } ;
+    };
+    useEffect(() => {
+        Axios.get('./projects.json')
+        .then(response => {
+            // console.log(response.data.projects);
+            setInfo(response.data.projects);
+            
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }, [])
+
     return (
         <>
             <InfoWrapper>
-                {showInfo && <Info />}
+                {showInfo && <Info info={targetInfo} />}
             </InfoWrapper>   
             <Wrapper className="d-flex flex-nowrap align-items-center justify-content-center">
-                { Array(7).fill(0).map((_, index) => 
+                { info.map((project, index) => 
                     <Card 
                         key={index} 
-                        id={index + 1} 
-                        src="https://picsum.photos/600/400" 
+                        id={project.id} 
+                        src={project.image} 
                         alt="project"
                         className="card rounded m-1" 
-                        onClick={() => setClicked(true)}
-                        onMouseEnter={() => {setClicked(false); setShowInfo(true)}}
-                        onMouseLeave={() => {if (!clicked) setShowInfo(false)}}
-                        clicked={clicked}
+                        onClick={handleClick}
+                        onMouseEnter={handleEnter}
+                        onMouseLeave={handleLeave}
+                        info={project}
+
                     />)}
             </Wrapper>
         </>
