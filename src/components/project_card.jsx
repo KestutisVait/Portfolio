@@ -43,13 +43,8 @@ const CardWrapper = styled.div`
     `;
     
     const Card = (props) => {
-    // const cards = document.querySelectorAll('.card');
-    // const screenWidth = window.innerWidth;
     
     const [showInfo, setShowInfo] = useState(false);
-    const [clicked, setClicked] = useState(false);
-    const [info, setInfo] = useState({});
-
     
     return (
         <CardWrapper 

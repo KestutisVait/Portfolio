@@ -4,19 +4,19 @@
             "id": 1,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "https://picsum.photos/600"
+            "image" : "./images/image_1.jpg"
         },
         {
             "id": 2,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "https://picsum.photos/601"
+            "image" : "./images/image_2.jpg"
         },
         {
             "id": 3,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "https://picsum.photos/602"
+            "image" : "./images/image_1.jpg"
         },
         {
             "id": 4,

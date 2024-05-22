@@ -68,10 +68,15 @@ const Portfolio = () => {
         target_card.style.filter = 'grayscale(0)';
         
         if (screenWidth < 768){
-            setShowInfo(true);
+            // setShowInfo(true);
             target_card.style.width = '95%';
+            cards.forEach(card => {
+                if (card !== target_card) {
+                    card.style.filter = 'grayscale(1)';
+                }
+            })
         } else if (screenWidth >= 768 && screenWidth < 992) {
-            setShowInfo(true);
+            // setShowInfo(true);
             target_card.style.width = '85%';
         } else {
             setTargetInfo(info[`${target_card.id - 1}`]);
@@ -95,14 +100,16 @@ const Portfolio = () => {
         };
     };
     const handleLeave = (event) => {
+        console.log("leave event");
         const target_card = event.currentTarget;
         if (!clicked) target_card.style.filter = 'grayscale(1)';
         
         if (screenWidth < 768) {
-            setShowInfo(false);
+            console.log("leave event");
+            // setShowInfo(false);
             target_card.style.width = '80%';
         } else if (screenWidth >= 768 && screenWidth < 992) {
-            setShowInfo(false);
+            // setShowInfo(false);
             target_card.style.width = '70%';
         } else {
             if (!clicked) {
@@ -118,10 +125,29 @@ const Portfolio = () => {
     };
     const handleClick = (event) => {
         const target_card = event.currentTarget;
-        setClicked(true)
+        console.log(target_card);
         if (screenWidth < 992){
-            if (!showInfo) handleEnter(event);
-            else handleLeave(event);
+            cards.forEach(card => {
+                if (card !== target_card) {
+                    if (card.classList.contains("active")) {
+                        card.classList.remove('active')
+                        card.style.width = '80%';
+                        card.style.filter = 'grayscale(1)';
+                    }
+                };
+            });
+            if (target_card.classList.contains("active")) {
+                console.log("already active");
+                target_card.classList.remove('active');
+                setClicked(false);
+                // handleLeave(event);
+                target_card.style.width = '80%';
+                target_card.style.filter = 'grayscale(1)';
+            } else {
+                target_card.classList.add('active');
+                handleEnter(event);
+                setClicked(true);
+            };
         } else {
             if (target_card.classList.contains("active")) {
                 setClicked(false);
@@ -129,10 +155,10 @@ const Portfolio = () => {
                 target_card.style.width = '300px';
                 target_card.style.filter = 'grayscale(1)';
                 target_card.classList.remove('active');
-                cards.forEach(card => {
-                    card.classList.remove('translateX-40');
-                })
             } else {
+                cards.forEach(card => {
+                    card.style.filter = 'grayscale(1)';
+                })
                 target_card.classList.add('active');
                 handleEnter(event);
                 setClicked(true);
@@ -161,7 +187,8 @@ const Portfolio = () => {
                     <Card 
                         key={index} 
                         id={project.id} 
-                        src={project.image} 
+                        src="https://picsum.photos/600/400"
+                        // src={project.image} 
                         alt="project"
                         className="card rounded m-1" 
                         onClick={handleClick}
