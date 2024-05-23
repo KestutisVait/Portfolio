@@ -28,3 +28,4 @@ networks:
 # create docker-compose.yaml in the root folder of your project;
 # run 'docker-compose up --build';
 =======================
+    "start": "node ./setup && react-scripts start",

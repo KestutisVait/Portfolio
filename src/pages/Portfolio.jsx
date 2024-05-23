@@ -23,8 +23,8 @@ const Wrapper = styled.div`
         overflow: hidden;
         width: fit-content;
     }
- `;
- const InfoWrapper = styled.div`
+    `;
+    const InfoWrapper = styled.div`
     @media only screen and (min-width: 992px) {
         position: absolute;
         top: 6%;
@@ -34,34 +34,49 @@ const Wrapper = styled.div`
         width: 500px;
         text-align: center;
     }
- `;
-const Portfolio = () => {
-    const screenWidth = window.innerWidth;
-    const cards = document.querySelectorAll('.card');
-
-    const [showInfo, setShowInfo] = useState(false);
-    const [clicked, setClicked] = useState(false);
-    const [info, setInfo] = useState([]);
-    const [targetInfo, setTargetInfo] = useState({});
+    `;
+    const Portfolio = () => {
+        const screenWidth = window.innerWidth;
+        const cards = document.querySelectorAll('.card');
+        
+        const [showInfo, setShowInfo] = useState(false);
+        const [clicked, setClicked] = useState(false);
+        const [info, setInfo] = useState([]);
+        const [targetInfo, setTargetInfo] = useState({});
+        
+    useEffect(() => {
+        Axios.get('./projects.json')
+        .then(response => {
+            // console.log(response.data.projects);
+            setInfo(response.data.projects);
+            
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    }, []);
 
     useEffect(() => {
-        const animationEndHandler = (event) => {
-            event.target.style.opacity = 1;
-            event.target.classList.remove('fade-n-slide');
-        };
-    
-        document.querySelectorAll('.card').forEach((card, index) => {
-            card.style.animationDelay = `${index * 0.2}s`;
-            card.classList.add('fade-n-slide');
-            card.addEventListener('animationend', animationEndHandler);
-        });
-        // Cleanup function to remove event listeners
-        return () => {
-            document.querySelectorAll('.card').forEach(card => {
-                card.removeEventListener('animationend', animationEndHandler);
+        if (info.length > 0) {
+            const animationEndHandler = (event) => {
+                event.target.style.opacity = 1;
+                event.target.classList.remove('fade-n-slide');
+            };
+
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+                card.classList.add('fade-n-slide');
+                card.addEventListener('animationend', animationEndHandler);
             });
-        };
-    }, []);
+            // Cleanup function to remove event listeners
+            return () => {
+                cards.forEach(card => {
+                    card.removeEventListener('animationend', animationEndHandler);
+                });
+            };
+        }
+    }, [info]);
 
     const handleEnter = (event) => {
         const target_card = event.currentTarget;
@@ -100,7 +115,6 @@ const Portfolio = () => {
         };
     };
     const handleLeave = (event) => {
-        console.log("leave event");
         const target_card = event.currentTarget;
         if (!clicked) target_card.style.filter = 'grayscale(1)';
         
@@ -125,7 +139,7 @@ const Portfolio = () => {
     };
     const handleClick = (event) => {
         const target_card = event.currentTarget;
-        console.log(target_card);
+        // console.log(target_card);
         if (screenWidth < 992){
             cards.forEach(card => {
                 if (card !== target_card) {
@@ -137,7 +151,6 @@ const Portfolio = () => {
                 };
             });
             if (target_card.classList.contains("active")) {
-                console.log("already active");
                 target_card.classList.remove('active');
                 setClicked(false);
                 // handleLeave(event);
@@ -165,17 +178,6 @@ const Portfolio = () => {
             };
         } ;
     };
-    useEffect(() => {
-        Axios.get('./projects.json')
-        .then(response => {
-            // console.log(response.data.projects);
-            setInfo(response.data.projects);
-            
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
-    }, [])
 
     return (
         <>
