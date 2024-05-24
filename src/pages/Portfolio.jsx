@@ -32,7 +32,6 @@ const Wrapper = styled.div`
         transform: translateX(-50%);
         height: 200px;
         width: 500px;
-        text-align: center;
     }
     `;
     const Portfolio = () => {
@@ -119,9 +118,10 @@ const Wrapper = styled.div`
         if (!clicked) target_card.style.filter = 'grayscale(1)';
         
         if (screenWidth < 768) {
-            console.log("leave event");
             // setShowInfo(false);
             target_card.style.width = '80%';
+            target_card.style.filter = 'grayscale(1)';
+            
         } else if (screenWidth >= 768 && screenWidth < 992) {
             // setShowInfo(false);
             target_card.style.width = '70%';
@@ -165,6 +165,7 @@ const Wrapper = styled.div`
             if (target_card.classList.contains("active")) {
                 setClicked(false);
                 handleLeave(event);
+                setShowInfo(false);
                 target_card.style.width = '300px';
                 target_card.style.filter = 'grayscale(1)';
                 target_card.classList.remove('active');
@@ -189,8 +190,8 @@ const Wrapper = styled.div`
                     <Card 
                         key={index} 
                         id={project.id} 
-                        src="https://picsum.photos/600/400"
-                        // src={project.image} 
+                        // src="https://picsum.photos/600/400"
+                        src={project.image} 
                         alt="project"
                         className="card rounded m-1" 
                         onClick={handleClick}

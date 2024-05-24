@@ -4,7 +4,7 @@
             "id": 1,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "./images/image_1.jpg"
+            "image" : "./images/image_2.jpg"
         },
         {
             "id": 2,
@@ -16,31 +16,31 @@
             "id": 3,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "./images/image_1.jpg"
+            "image" : "./images/image_2.jpg"
         },
         {
             "id": 4,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "https://picsum.photos/603"
+            "image" : "./images/image_2.jpg"
         },
         {
             "id": 5,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "https://picsum.photos/604"
+            "image" : "./images/image_2.jpg"
         },
         {
             "id": 6,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "https://picsum.photos/605"
+            "image" : "./images/image_2.jpg"
         },
         {
             "id": 7,
             "title" : "Project",
             "description" : "Portfolio site",
-            "image" : "https://picsum.photos/606"
+            "image" : "./images/image_2.jpg"
         }
     ]
 }
