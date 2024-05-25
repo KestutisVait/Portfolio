@@ -31,7 +31,7 @@ const Wrapper = styled.div`
         left: 50%;
         transform: translateX(-50%);
         height: 200px;
-        width: 500px;
+        width: 600px;
     }
     `;
     const Portfolio = () => {
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
         .then(response => {
             // console.log(response.data.projects);
             setInfo(response.data.projects);
-            
+            // console.log(info);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
