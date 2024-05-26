@@ -15,19 +15,24 @@ const Wrapper = styled.div`
     position: absolute;
     height: 100%;
     padding: 10px;
+    animation: ${enter_animation} 0.3s cubic-bezier(.52,2.06,.67,.55) forwards; 
     @media only screen and (max-width: 991px) {
         width: 100%;
         right: 0;
-        animation: ${enter_animation} 0.3s cubic-bezier(.52,2.06,.67,.55) forwards; 
         background-color: rgb(255, 255, 255, 0.8);
         backdrop-filter: blur(5px);
         border-radius: 3px;
         background-color: rgb(255, 255, 255, 0.8);
+        display: grid;
+        grid-template-rows: 40px 1fr 1fr 1fr;
+        grid-template-areas:
+        "title . . tools"
+        "title . link link"
+        "description description description description"
     }
     @media only screen and (min-width: 992px) {
         width: 100%;
         right: 0;
-        animation: ${enter_animation} 0.3s cubic-bezier(.52,2.06,.67,.55) forwards;
         display: grid;
         grid-template-rows: 40px 1fr 1fr 1fr;
         grid-template-areas:
