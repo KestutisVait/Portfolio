@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     }
     @media only screen and (min-width: 992px) {
         position: absolute;
-        top: 50%;
+        top: 60%;
         left: 50%;
         transform: translate(-50%, -50%);// !!! if more than 5 cards use ( left: 0, transform: translate(0, -50%); ) 
         height: 300px;
