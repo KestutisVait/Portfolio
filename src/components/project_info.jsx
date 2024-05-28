@@ -113,11 +113,11 @@ const Wrapper = styled.div`
     
     const Info = (props) => {
         
-        const [images, setImages] = useState([]);
+        // const [images, setImages] = useState([]);
 
-        useEffect(() => {
-            setImages(props.info.gallery);
-        }, []);
+        // useEffect(() => {
+        //     setImages(props.info.gallery);
+        // }, []);
 
         // const [showGallery, setShowGallery] = useState(true);
 

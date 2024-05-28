@@ -1,7 +1,7 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import '../App.css'
-import Info from './project_info'
+// import Info from './project_info'
 import styled from 'styled-components';
 // import Gallery from './gallery';
 

@@ -1,8 +1,5 @@
 import './App.css'
 import Nav from './components/nav'
-// import About from './pages/About'
-import { useState, useEffect } from 'react'
-
 
 const App = () => {
 
