@@ -15,6 +15,7 @@ const Wrapper = styled.div`
         flex-direction: column;
         padding: 10px 0;
         overflow-y: scroll;
+       
     }
     @media only screen and (min-width: 992px) {
         position: absolute;
@@ -28,6 +29,9 @@ const Wrapper = styled.div`
     }
     `;
     const InfoWrapper = styled.div`
+    @media only screen and (max-width: 991px) {
+        display: none;
+    }
     @media only screen and (min-width: 992px) {
         position: absolute;
         top: 2%;
@@ -38,7 +42,7 @@ const Wrapper = styled.div`
     `;
 const Portfolio = () => {
     const screenWidth = window.innerWidth;
-    const cards = document.querySelectorAll('.card');
+    // const cards = document.querySelectorAll('.card');
     
     const [showInfo, setShowInfo] = useState(false);
     // const [clicked, setClicked] = useState(false);
@@ -88,64 +92,69 @@ const Portfolio = () => {
 
     const handleEnter = (event) => {
         const target_card = event.currentTarget;
+        if (screenWidth < 991) {
+              if (!activeProjectId) {
+                setActiveProjectId(target_card.id);
+            }
+        }
         
-        if (screenWidth < 768){
-            // setShowInfo(true);
-            target_card.style.width = '95%';
-            cards.forEach(card => {
-                if (card !== target_card) {
-                    card.style.filter = 'grayscale(1)';
-                }
-            })
-        } else if (screenWidth >= 768 && screenWidth < 992) {
-            // setShowInfo(true);
-            target_card.style.width = '85%';
-        } else {
-        };
+        // if (screenWidth < 768){
+        //     // setShowInfo(true);
+        //     target_card.style.width = '95%';
+        //     cards.forEach(card => {
+        //         if (card !== target_card) {
+        //             card.style.filter = 'grayscale(1)';
+        //         }
+        //     })
+        // } else if (screenWidth >= 768 && screenWidth < 992) {
+        //     // setShowInfo(true);
+        //     target_card.style.width = '85%';
+        // } else {
+        // };
     };
     const handleLeave = (event) => {
-        const target_card = event.currentTarget;
+        // const target_card = event.currentTarget;
         
-        if (screenWidth < 768) {
-            // setShowInfo(false);
-            target_card.style.width = '80%';
-            target_card.style.filter = 'grayscale(1)';
+        // if (screenWidth < 768) {
+        //     // setShowInfo(false);
+        //     target_card.style.width = '80%';
+        //     target_card.style.filter = 'grayscale(1)';
             
-        } else if (screenWidth >= 768 && screenWidth < 992) {
-            // setShowInfo(false);
-            target_card.style.width = '70%';
-        } else {
-        };
+        // } else if (screenWidth >= 768 && screenWidth < 992) {
+        //     // setShowInfo(false);
+        //     target_card.style.width = '70%';
+        // } else {
+        // };
     };
     const handleClick = (event) => {
         const target_card = event.currentTarget;
-        if (screenWidth < 992){
-            cards.forEach(card => {
-                if (card !== target_card) {
-                    if (card.classList.contains("active")) {
-                        card.classList.remove('active')
-                        card.style.width = '80%';
-                        card.style.filter = 'grayscale(1)';
-                    }
-                };
-            });
-            if (target_card.classList.contains("active")) {
-                target_card.classList.remove('active');
-                // setClicked(false);
-                target_card.style.width = '80%';
-                target_card.style.filter = 'grayscale(1)';
-            } else {
-                target_card.classList.add('active');
-                handleEnter(event);
-                // setClicked(true);
-            };
-        } else {
+        // if (screenWidth < 992){
+        //     cards.forEach(card => {
+        //         if (card !== target_card) {
+        //             if (card.classList.contains("active")) {
+        //                 card.classList.remove('active')
+        //                 card.style.width = '80%';
+        //                 card.style.filter = 'grayscale(1)';
+        //             }
+        //         };
+        //     });
+        //     if (target_card.classList.contains("active")) {
+        //         target_card.classList.remove('active');
+        //         // setClicked(false);
+        //         target_card.style.width = '80%';
+        //         target_card.style.filter = 'grayscale(1)';
+        //     } else {
+        //         target_card.classList.add('active');
+        //         handleEnter(event);
+        //         // setClicked(true);
+        //     };
+        // } else {
             // setClicked(true);
             setShowInfo(true);
             setTargetInfo(info[`${target_card.id - 1}`]);
             if (!activeProjectId) {
                 setActiveProjectId(target_card.id);
-            }
+            // }
         } ;
     };
     const handleClose = (event) => {

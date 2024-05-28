@@ -13,11 +13,11 @@ const enter_animation_button = keyframes`
 `;
 const Wrapper = styled.div`
     position: absolute;
-    // height: 100%;
     padding: 10px;
-    animation: ${enter_animation} 0.3s cubic-bezier(.52,2.06,.67,.55) forwards; 
+    animation: ${enter_animation} 0.4s cubic-bezier(.11,.05,1,.13) forwards; 
     @media only screen and (max-width: 991px) {
-        width: 100%;
+        height: 100%;
+        padding-left: 13%;
         right: 0;
         background-color: rgb(255, 255, 255, 0.8);
         backdrop-filter: blur(5px);
@@ -26,9 +26,10 @@ const Wrapper = styled.div`
         display: grid;
         grid-template-rows: 40px 1fr 1fr 1fr;
         grid-template-areas:
-        "title title . tools"
-        "title . link link"
+        "title . . tools"
+        ". . link link"
         "description description description description"
+        "open . . gallery"
     }
     @media only screen and (min-width: 992px) {
         width: 100%;
@@ -39,7 +40,7 @@ const Wrapper = styled.div`
         grid-template-rows: 40px 1fr 90px 40px;
         grid-template-areas:
         "title . . tools"
-        ". . link link"
+        ". link link link"
         "description description description description"
         "open . . gallery"
     }
@@ -57,6 +58,9 @@ const Wrapper = styled.div`
     `;
     const Description = styled.p`
     grid-area: description;
+    @media only screen and (max-width: 991px) {
+        font-size: 0.9rem;
+    }
     `;
     const Icon = styled.img`
     height: 30px;
@@ -69,6 +73,17 @@ const Wrapper = styled.div`
     justify-content: end;
     margin: 1.5rem 0;
     animation: ${enter_animation_button} 0.3s cubic-bezier(.52,2.06,.67,.55) forwards; 
+    .text {
+        font-size: 15px;
+        padding: '1px 4px 0 0';
+        margin: 0;
+    }
+    @media only screen and (max-width: 991px) {
+        margin: 0.5rem 0;
+        .text { 
+            font-size: 0.9rem; 
+        }
+    }
     `;
     const OpenProject = styled.div`
     grid-area: open;
@@ -136,20 +151,14 @@ const Wrapper = styled.div`
             </Tools>
             <LinkToGitHub>
                 <Button onClick={() => window.open(`${props.info.link}`, '_blank')}>
-                    <p 
-                        className='poppins-light' 
-                        style={{
-                            padding: '1px 4px 0 0', 
-                            fontSize: '15px',
-                            margin: 0,
-                        }}>Source Code</p>
+                    <p className='poppins-light text'>Source Code</p>
                     <Icon src={`./images/icons/social_media/github.png`} alt={props.info.link} />
                 </Button>
             </LinkToGitHub>
             {props.info.open &&<OpenProject>
                 <Button onClick={() => window.open(`${props.info.open_project}`, '_blank')} $light>
                     <p 
-                        className='poppins-light' 
+                        className='poppins-light ' 
                         style={{
                             padding: '1px 4px 0 0', 
                             fontSize: '15px',
