@@ -98,7 +98,7 @@ const CardWrapper = styled.div`
         // }
     `;
 const Card = (props) => {
-    const screenWidth = window.innerWidth;
+    // const screenWidth = window.innerWidth;
     const active_ID = parseInt(props.activeCardId);
     const id = parseInt(props.id);
         
