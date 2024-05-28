@@ -15,10 +15,6 @@ const CardWrapper = styled.div`
     opacity: 0;
     border: none;
     cursor: pointer;
-    &:hover {
-        aspect-ratio: 1.618 / 1;
-        filter: grayscale(0);
-    }
     @media only screen and (max-width: 767px) {
         width: 80%;
         // &:hover {
@@ -62,7 +58,7 @@ const CardWrapper = styled.div`
         width: 100%;
         height: 100%;
         color: white;
-        background-color: rgb(70, 149, 180, 0.7);
+        background-color: rgb(70, 149, 180, 0.8);
         opacity: 0;
         border-radius: 5px;
         animation: ${clickMe_animation} 0.3s cubic-bezier(.11,.05,1,.13) forwards;
@@ -76,6 +72,9 @@ const CardWrapper = styled.div`
             animation: ${clickMe_animation} 0.2s cubic-bezier(.11,.05,1,.13) forwards;
         }
     `;
+    const Close = styled(ClickMe)`
+        background-color: rgb(70, 149, 180, 0.9);
+    `;
     const fade_animation = keyframes`
         from {opacity: 1;}
         to {opacity: 0;}
@@ -87,12 +86,11 @@ const CardWrapper = styled.div`
         animation: ${fade_animation} 0.3s cubic-bezier(.11,.05,1,.13) forwards;
     `;
     const CloseIcon = styled.div`
-        background: url('./images/icons/social_media/close.png') no-repeat;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        transition:  0.2s cubic-bezier(.11,.05,1,.13);
+        transition:  0.3s cubic-bezier(.52,2.06,.67,.55);
         // &:hover {
         //     transform: translate(-50%, -50%) scale(0.9);
         // }
@@ -162,12 +160,12 @@ const Card = (props) => {
                 <h1 className='poppins-light' style={{textAlign: 'center'}}>{props.info.title}</h1> 
                 <h5 className='poppins-light'>Click for more ...</h5> 
             </ClickMe>}
-            {showClose && <ClickMe onClick={handleClose}>
+            {showClose && <Close onClick={handleClose}>
                 <CloseIcon className='closeIcon'>
                     <img src="./images/icons/social_media/close-white.png" alt="close" />
                 </CloseIcon> 
                 <Text className='poppins-light close-text'>Close</Text>
-            </ClickMe>}
+            </Close>}
         </CardWrapper>
     );
 };
