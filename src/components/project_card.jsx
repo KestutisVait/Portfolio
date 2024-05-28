@@ -102,7 +102,7 @@ const Card = (props) => {
     const active_ID = parseInt(props.activeCardId);
     const id = parseInt(props.id);
         
-    const [showInfo, setShowInfo] = useState(false);
+    // const [showInfo, setShowInfo] = useState(false);
     const [showClickMe, setShowClickMe] = useState(false);
     const [active, setActive] = useState(true);
     const [showClose, setShowClose] = useState(false);
@@ -129,7 +129,7 @@ const Card = (props) => {
     }
     const handleLeave = (event) => {
         props.onMouseLeave(event);
-        if (screenWidth < 922) setShowInfo(false);
+        // if (screenWidth < 922) setShowInfo(false);
         event.currentTarget.classList.remove('active')
         setShowClickMe(false);
     }
