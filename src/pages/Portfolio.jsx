@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     const InfoWrapper = styled.div`
     @media only screen and (min-width: 992px) {
         position: absolute;
-        top: 3%;
+        top: 2%;
         left: 50%;
         transform: translateX(-50%);
         width: 500px;

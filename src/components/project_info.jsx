@@ -36,7 +36,7 @@ const Wrapper = styled.div`
         display: grid;
         border-top: 1px solid rgb(70, 149, 180);
         border-bottom: 1px solid rgb(70, 149, 180);
-        grid-template-rows: 40px 1fr 110px 50px;
+        grid-template-rows: 40px 1fr 90px 40px;
         grid-template-areas:
         "title . . tools"
         ". . link link"
