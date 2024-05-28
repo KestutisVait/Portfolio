@@ -1,0 +1,130 @@
+$tamsi: #3d3d3d;
+$sviesi: #dbdfd3;
+$on-hover: #ffbd54;
+
+.grid_container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    
+
+    .media {
+        background-color: $tamsi;
+        grid-column: 1/13;
+        .media_icons {
+            list-style-type: none;
+            padding-top: 0.2rem;
+            display: flex;
+            justify-content: center;
+            li{
+                padding: 0.5rem 2%;
+                svg{
+                    fill:#ffffff;
+                    transition: 0.3s;
+                }
+                svg:hover{
+                    fill:$on-hover;
+                }
+            }
+            .rezervuota {
+                background-color: $tamsi;
+                margin-left: auto;
+                display: flex;
+                // visibility: hidden;    // <--- palikti isjungta kol nebaigtas funkcionalumas
+                #krepselio_sk{
+                    color: white;
+                    padding: 0 0.3rem;
+                    font-size: 17px;
+                }
+                svg{
+                    cursor: pointer;
+                }               
+            }
+        }
+    }      
+    .logo {
+        grid-column: 1/13;        
+        background-color: $sviesi;
+        text-align: center;
+    }
+    .main_nav{
+        grid-column: 1/13;
+        @include phone {
+            grid-column: 6/8;
+        } 
+        .nav{
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            transition: 0.5s;
+            scroll-snap-align: end;
+            .full{
+                @include phone {
+                    display: none;
+                } 
+            }
+            .nav_item{                
+                margin: 0.6rem 3%;
+                font-family: 'Wix Madefor Text', sans-serif;
+                font-weight: 600;            
+                font-size: 0.7rem;
+                letter-spacing: 0.3rem;
+                line-height: 0.5rem;
+                @include tablet {
+                    margin: 0.6rem 2%;
+                    letter-spacing: 0.2rem;
+                }
+                @include phone {
+                    margin: 0.4rem 2% 0.6rem;
+                    letter-spacing: 0.2rem;
+                }                
+                a {
+                    color: $tamsi;
+                    text-decoration: none;
+                    transition: 0.3s;                    
+                }
+                a:hover {
+                    color: $on-hover;
+                    
+                }
+                    svg{
+                        fill:$tamsi
+                    }
+                svg:hover{
+                    fill:$on-hover
+                }
+            }
+            .drop_menu{
+                position: relative;
+                display: none;
+                @include phone {
+                    display: block;
+                }
+                .drop_content {
+                    list-style-type: none;
+                    position: absolute;
+                    display: none;
+                    z-index: 1;
+                    li{
+                        font-size: 0.9rem;
+                        padding: 0.2rem 0;
+                    }
+                    li:first-child{
+                        padding-top: 0.9rem; 
+                    }
+                }
+                .dropdown_menu {
+                    animation: growDown 0.5s ease-in-out forwards;
+                    transform-origin: top center;
+                }
+                @keyframes growDown {
+                    0% {
+                        transform: scaleY(0);
+                    }
+                    100% {
+                        transform: scaleY(1);
+                    }
+                }
+            }
+        }        
+    }
+}

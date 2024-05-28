@@ -4,6 +4,8 @@ import Card from '../components/project_card'
 import styled from 'styled-components';
 import Info from '../components/project_info'
 import Axios from 'axios';
+import Gallery from '../components/gallery';
+
 
 const Wrapper = styled.div`
     @media only screen and (max-width: 991px) {
@@ -17,8 +19,9 @@ const Wrapper = styled.div`
     @media only screen and (min-width: 992px) {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        height: 400px;
+        left: 50%;
+        transform: translate(-50%, -50%);// !!! if more than 5 cards use ( left: 0, transform: translate(0, -50%); ) 
+        height: 300px;
         flex-direction: row;
         overflow: hidden;
         width: fit-content;
@@ -27,28 +30,30 @@ const Wrapper = styled.div`
     const InfoWrapper = styled.div`
     @media only screen and (min-width: 992px) {
         position: absolute;
-        top: 6%;
+        top: 3%;
         left: 50%;
         transform: translateX(-50%);
-        height: 200px;
-        width: 600px;
+        width: 500px;
     }
     `;
-    const Portfolio = () => {
-        const screenWidth = window.innerWidth;
-        const cards = document.querySelectorAll('.card');
-        
-        const [showInfo, setShowInfo] = useState(false);
-        const [clicked, setClicked] = useState(false);
-        const [info, setInfo] = useState([]);
-        const [targetInfo, setTargetInfo] = useState({});
+const Portfolio = () => {
+    const screenWidth = window.innerWidth;
+    const cards = document.querySelectorAll('.card');
+    
+    const [showInfo, setShowInfo] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    const [info, setInfo] = useState([]);
+    const [targetInfo, setTargetInfo] = useState({});
+    const [showGallery, setShowGallery] = useState(false);
+    const [galleryImages, setGalleryImages] = useState([]);
+    const [activeProjectId, setActiveProjectId] = useState(null);
+
         
     useEffect(() => {
         Axios.get('./projects.json')
         .then(response => {
             // console.log(response.data.projects);
             setInfo(response.data.projects);
-            // console.log(info);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -95,11 +100,11 @@ const Wrapper = styled.div`
         } else {
             setTargetInfo(info[`${target_card.id - 1}`]);
             target_card.style.width = '400px';
-            if (target_card.id !== '1') {
-                cards.forEach(card => {
-                    card.classList.add('translateX-40');
-                });
-            };
+            // if (target_card.id !== '1') {
+            //     cards.forEach(card => {
+            //         card.classList.add('translateX-40');
+            //     });
+            // };
             setShowInfo(true);
             if (!target_card.classList.contains("active")) {
                 setClicked(false);
@@ -139,7 +144,6 @@ const Wrapper = styled.div`
     };
     const handleClick = (event) => {
         const target_card = event.currentTarget;
-        // console.log(target_card);
         if (screenWidth < 992){
             cards.forEach(card => {
                 if (card !== target_card) {
@@ -153,7 +157,6 @@ const Wrapper = styled.div`
             if (target_card.classList.contains("active")) {
                 target_card.classList.remove('active');
                 setClicked(false);
-                // handleLeave(event);
                 target_card.style.width = '80%';
                 target_card.style.filter = 'grayscale(1)';
             } else {
@@ -162,6 +165,7 @@ const Wrapper = styled.div`
                 setClicked(true);
             };
         } else {
+            setActiveProjectId(target_card.id);
             if (target_card.classList.contains("active")) {
                 setClicked(false);
                 handleLeave(event);
@@ -180,27 +184,37 @@ const Wrapper = styled.div`
         } ;
     };
 
+    const handleOpenGallery = (card_id) => {
+        setActiveProjectId(card_id);
+        setGalleryImages(info[`${card_id - 1}`].gallery);
+        setShowGallery(true);
+    }
+    const handleCloseGallery = () => {
+        setShowGallery(false);
+    }
+
     return (
         <>
             <InfoWrapper>
-                {showInfo && <Info info={targetInfo} />}
+                {showInfo && <Info info={targetInfo} opengallery={handleOpenGallery} />}
             </InfoWrapper>   
             <Wrapper className="d-flex flex-nowrap align-items-center justify-content-center">
                 { info.map((project, index) => 
                     <Card 
                         key={index} 
                         id={project.id} 
-                        // src="https://picsum.photos/600/400"
-                        src={project.image} 
+                        src={`./images/${index + 1}/${project.gallery[0]}`} 
                         alt="project"
                         className="card rounded m-1" 
                         onClick={handleClick}
                         onMouseEnter={handleEnter}
                         onMouseLeave={handleLeave}
                         info={project}
+                        // opengallery={handleOpenGallery}
 
                     />)}
             </Wrapper>
+            {showGallery && <Gallery  project={activeProjectId} closeGallery={handleCloseGallery} images={galleryImages}/>}
         </>
     )
 }

@@ -1,0 +1,55 @@
+.pilnas-agentas{
+    min-width: max-content;
+    background-color: #9a9da0;
+    border-radius: 1rem;
+    display:grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-areas: 
+    "galerija vardas"
+    "galerija pavarde"
+    "galerija regionas"
+    "galerija ."
+    "galerija ."
+    "aprasas ."  
+}
+.agent_foto{
+    grid-area: galerija;
+    width: fit-content;
+    background-color:#bfc2c4;
+    border-radius: 1rem;
+    padding: 1rem;
+    z-index: 9;
+}
+.profilis-agento{   
+   border-radius: 0.7rem;
+}
+.agent_vardas{
+    grid-area: vardas;
+    font-size: 3rem;
+    font-style: italic;
+    padding: 1rem 0 0 1rem;
+}
+.agent_pavarde{
+    grid-area: pavarde;
+    font-size: 3rem;
+    font-style: italic;
+    border-bottom: 1px solid white;
+    padding:0 0 1rem 1rem ;
+}
+.agent_aprasas{
+    max-width: 390px;
+    grid-area: aprasas;
+    text-indent: 2rem;
+    text-align: justify;
+    text-wrap: wrap;
+    background-color: #5c6165;
+    border-radius: 1rem;
+    z-index: 8;
+    margin-top: -2rem;
+    padding: 3rem 1rem 1rem;
+}
+.agent_regionas{
+    grid-area: regionas;
+    font-size: 1.4rem;
+    padding:1rem 0 0 1rem;
+}
