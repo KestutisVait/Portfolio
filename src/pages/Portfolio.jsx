@@ -41,12 +41,16 @@ const Portfolio = () => {
     const cards = document.querySelectorAll('.card');
     
     const [showInfo, setShowInfo] = useState(false);
-    const [clicked, setClicked] = useState(false);
+    // const [clicked, setClicked] = useState(false);
     const [info, setInfo] = useState([]);
     const [targetInfo, setTargetInfo] = useState({});
     const [showGallery, setShowGallery] = useState(false);
     const [galleryImages, setGalleryImages] = useState([]);
     const [activeProjectId, setActiveProjectId] = useState(null);
+    // const [activeCard, setActiveCard] = useState(null);
+
+    // useEffect(() => { console.log(' activeCard',activeCard);}, [activeCard]);
+    // useEffect(() => { console.log(' activeproject',activeProjectId);}, [activeProjectId]);
 
         
     useEffect(() => {
@@ -84,7 +88,6 @@ const Portfolio = () => {
 
     const handleEnter = (event) => {
         const target_card = event.currentTarget;
-        target_card.style.filter = 'grayscale(0)';
         
         if (screenWidth < 768){
             // setShowInfo(true);
@@ -98,29 +101,10 @@ const Portfolio = () => {
             // setShowInfo(true);
             target_card.style.width = '85%';
         } else {
-            setTargetInfo(info[`${target_card.id - 1}`]);
-            target_card.style.width = '400px';
-            // if (target_card.id !== '1') {
-            //     cards.forEach(card => {
-            //         card.classList.add('translateX-40');
-            //     });
-            // };
-            setShowInfo(true);
-            if (!target_card.classList.contains("active")) {
-                setClicked(false);
-                cards.forEach(card => {
-                    if (card.classList.contains("active")) {
-                        card.classList.remove('active')
-                        card.style.width = '300px';
-                        card.style.filter = 'grayscale(1)';
-                    };
-                });
-            };
         };
     };
     const handleLeave = (event) => {
         const target_card = event.currentTarget;
-        if (!clicked) target_card.style.filter = 'grayscale(1)';
         
         if (screenWidth < 768) {
             // setShowInfo(false);
@@ -131,15 +115,6 @@ const Portfolio = () => {
             // setShowInfo(false);
             target_card.style.width = '70%';
         } else {
-            if (!clicked) {
-                setShowInfo(false);
-                target_card.style.width = '300px';
-                if (target_card.id !== '1') {
-                    cards.forEach(card => {
-                        card.classList.remove('translateX-40');
-                    });
-                };
-            };
         };
     };
     const handleClick = (event) => {
@@ -156,36 +131,29 @@ const Portfolio = () => {
             });
             if (target_card.classList.contains("active")) {
                 target_card.classList.remove('active');
-                setClicked(false);
+                // setClicked(false);
                 target_card.style.width = '80%';
                 target_card.style.filter = 'grayscale(1)';
             } else {
                 target_card.classList.add('active');
                 handleEnter(event);
-                setClicked(true);
+                // setClicked(true);
             };
         } else {
-            setActiveProjectId(target_card.id);
-            if (target_card.classList.contains("active")) {
-                setClicked(false);
-                handleLeave(event);
-                setShowInfo(false);
-                target_card.style.width = '300px';
-                target_card.style.filter = 'grayscale(1)';
-                target_card.classList.remove('active');
-            } else {
-                cards.forEach(card => {
-                    card.style.filter = 'grayscale(1)';
-                })
-                target_card.classList.add('active');
-                handleEnter(event);
-                setClicked(true);
-            };
+            // setClicked(true);
+            setShowInfo(true);
+            setTargetInfo(info[`${target_card.id - 1}`]);
+            if (!activeProjectId) {
+                setActiveProjectId(target_card.id);
+            }
         } ;
     };
+    const handleClose = (event) => {
+        setActiveProjectId(null);
+        setShowInfo(false);
+    }
 
     const handleOpenGallery = (card_id) => {
-        setActiveProjectId(card_id);
         setGalleryImages(info[`${card_id - 1}`].gallery);
         setShowGallery(true);
     }
@@ -209,7 +177,9 @@ const Portfolio = () => {
                         onClick={handleClick}
                         onMouseEnter={handleEnter}
                         onMouseLeave={handleLeave}
+                        onClose={handleClose}
                         info={project}
+                        activeCardId={activeProjectId}
                         // opengallery={handleOpenGallery}
 
                     />)}
