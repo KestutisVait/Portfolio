@@ -6,7 +6,7 @@
             "description" : "HTML and CSS  final assignment. Fully responsive design with a little JavaScript code for carousel. Also used SCSS for styling.",
             "link" : "https://github.com/KestutisVait/ANNA",
             "tools" : ["html5", "css3", "sass", "javascript"],
-            "gallery" : ["anna_1.png"],
+            "gallery" : ["anna_1.png", "anna_2.png", "anna_3.png", "anna_4.png", "anna_5.png", "anna_6.png"],
             "open" : true,
             "open_project" : "./projects/anna/index.html"
         },
@@ -16,7 +16,7 @@
             "description" : "This was a collaborative project. I was responsive for the front-end.",
             "link" : "https://github.com/benas-juskus/sudoku",
             "tools" : ["html5", "css3","javascript"],
-            "gallery" : ["sudoku_1.png"],
+            "gallery" : ["sudoku_1.png", "sudoku_2.png", "sudoku_3.png"],
             "open" : true,
             "open_project" : "./projects/sudoku/index.html"
         },
@@ -26,7 +26,7 @@
             "description" : "School project of a Real Estate website. Built using Object Oriented Programming in JavaScript.",
             "link" : "https://github.com/odilijus-grinkas/nt-projektas",
             "tools" : ["html5", "css3", "javascript"],
-            "gallery" : ["real_estate_1.png"],
+            "gallery" : ["real_estate_1.png", "real_estate_2.png", "real_estate_3.png", "real_estate_4.png"],
             "open" : true,
             "open_project" : "./projects/real_estate/index.html"
         },
@@ -36,7 +36,7 @@
             "description" : "Pett cuteness competition website. Built using Express.js on Node.js with Ejs template engine and MySQL. Used Bootstrap for styling. Code written acording to MVC model and CRUD for data management.",
             "link" : "https://github.com/KestutisVaitiekunas/PetsNode",
             "tools" : ["html5", "bootstrap", "javascript", "node", "express", "mysql"],
-            "gallery" : ["petter_choice_1.png"]
+            "gallery" : ["petter_choice_1.png", "petter_choice_2.png", "petter_choice_4.png", "petter_choice_5.png"]
         },
         {
             "id" : 5,
@@ -44,7 +44,7 @@
             "description" : "Personal finance tracker application. It was built with React, Express.js and MongoDB. User login and registration. Functionality to sort income and outcome into groups . Add, delete groups if needed, filter data by date. Project is running in Docker containers.",
             "link" : "https://github.com/KestutisVaitiekunas/PerFin",
             "tools" : ["css3", "react", "node", "express", "mongo", "docker"],
-            "gallery" : ["perfin_1.png"]
+            "gallery" : ["perfin_1.png", "perfin_2.png", "perfin_3.png", "perfin_4.png", "perfin_5.png"]
         }
     ]
 }
