@@ -1,0 +1,12 @@
+{
+    "introduction": " For me, programming started as an hobby, playing around with simple things. Soon enough, i have realized, that i was spending more and more time doing just that, consuming my time off work. It came to me... i wanted to persue this furher, seek deeper.",
+    "follow_up": "Now, after education in full-stack web development, i am emerging as a junior developer, ready to take on new challenges. Even though, i am a junior in web development, i do bring alot experiance in team work, work ethic, communication as well as responsibility, adaptability, loyalty and eagerness to deepen my knowledge. I am excited to see where this journey takes me.",
+    "skills": {
+        "technical": ["html5", "css3", "sass", "bootstrap", "javascript", "react", "node", "express", "mysql" ,"mongo", "docker"],
+        "soft": [ "Responsibility", "Adaptability", "Team work", "Loyalty", "Professionalism", "Problem solving" ]
+    },
+    "soc_media_links": {
+        "github": "https://github.com/KestutisVait",
+        "linkedin": "https://www.linkedin.com/in/kestutisvait"
+    }
+}
