@@ -68,6 +68,12 @@ const TechnicallSkills = styled(SkillsWrapper)`
 const Media = styled.img`
      width: 40px;  
      margin-left: 0.5rem; 
+     cursor: pointer;
+     transition: 0.3s;
+     transition-timing-function: cubic-bezier(.52,2.06,.67,.55);
+     &:hover {
+       transform: scale(1.3);
+     }
      @media only screen and (max-width: 991px) {
        width: 30px;
        margin-left: 0.2rem;
