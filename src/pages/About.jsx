@@ -81,12 +81,12 @@ const Header = styled.div`
       "hello hello media"
       "hello hello ."
     ;
-    @media only screen and (min-width: 992px) {
-      margin-top: 5rem;
-    }
-    @media only screen and (min-width: 1300px) {
-      margin-top: 7rem;
-    }
+    // @media only screen and (min-width: 992px) {
+    //   margin-top: 5rem;
+    // }
+    // @media only screen and (min-width: 1300px) {
+    //   margin-top: 7rem;
+    // }
 `;
 const Hello = styled.h1`
   grid-area: hello;
