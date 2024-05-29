@@ -85,7 +85,7 @@ const Header = styled.div`
       margin-top: 5rem;
     }
     @media only screen and (min-width: 1300px) {
-      margin-top: 10rem;
+      margin-top: 7rem;
     }
 `;
 const Hello = styled.h1`
