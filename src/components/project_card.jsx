@@ -35,7 +35,7 @@ const CardWrapper = styled.div`
         //     width: 400px;
         // }
         &.active {
-            width: 400px;
+            width: 500px;
             filter: grayscale(0);
         }
     }
@@ -62,15 +62,15 @@ const CardWrapper = styled.div`
         background-color: rgb(70, 149, 180, 0.8);
         opacity: 0;
         border-radius: 5px;
-        animation: ${clickMe_animation} 0.3s cubic-bezier(.11,.05,1,.13) forwards;
-        animation-delay: 0.2s;
+        animation: ${clickMe_animation} 0.2s cubic-bezier(.11,.05,1,.13) forwards;
+        // animation-delay: 0.2s;
         transaction: 0.3s;
         &:hover .closeIcon{
             transform: translate(-50%, -50%) scale(0.7);
         }
         &:hover .close-text {
             opacity: 1;
-            animation: ${clickMe_animation} 0.2s cubic-bezier(.11,.05,1,.13) forwards;
+            animation: ${clickMe_animation} 0.3s cubic-bezier(.11,.05,1,.13) forwards;
         }
     `;
     const Close = styled(ClickMe)`
