@@ -36,11 +36,11 @@ const Nav = (props) => {
     return (
         <div className="nav d-flex justify-content-center align-items-center overflow-hidden flex-nowrap" onClick={handleClick} id="nav">
             <div className='nav-button p-2' id="me">
-                <p className="poppins-thin m-0 no-cursor">ME</p>
+                <p className="poppins-light m-0 no-cursor">ME</p>
             </div>
-            <p className="poppins-thin mb-1 no-cursor px-3" id="pipe">|</p>
+            <p className="poppins-light mb-0 no-cursor px-3" id="pipe">|</p>
             <div className='nav-button p-2' id="portfolio">
-                <p className="poppins-thin m-0 no-cursor">PORTFOLIO</p>
+                <p className="poppins-light m-0 no-cursor">PORTFOLIO</p>
             </div>
         </div>
     )

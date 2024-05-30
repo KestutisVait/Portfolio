@@ -3,6 +3,7 @@ import '../App.css';
 import { useEffect, useState } from 'react';
 import  Axios  from 'axios';
 import styled, { keyframes } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const hello_animation = keyframes`
   0% { color: rgb(51, 148, 187); }
@@ -16,13 +17,30 @@ const hello_animation = keyframes`
   100% { color: rgb(51, 148, 187); }
 }
 `;
+const Wrapper = styled.div`
+  opacity: 0;
+  height: 100%;
+  overflow-X: hidden;
+  @media only screen and (max-width: 600px) {
+    width: 80%;
+  }
+  @media only screen and (min-width: 600px) {
+    width: 70%;
+  }
+  @media only screen and (min-width: 1200px) {
+    width: 60%;
+  }
+  @media only screen and (min-width: 1300px) {
+    width: 50%;
+  }
+`;
 const SkillsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  height: 100%;
+  height: fit-content;
   border-top: 1px solid  rgb(70, 149, 180);
   @media only screen and (max-width: 991px) {
     flex-direction: column;
@@ -42,6 +60,7 @@ const Skills = styled(SkillsWrapper)`
   }
 `;
 const TechnicallSkills = styled(SkillsWrapper)`
+  height: fit-content;
   align-items: flex-start;
   justify-content: start;
   flex-wrap: wrap;
@@ -98,9 +117,25 @@ const Hello = styled.h1`
   grid-area: hello;
   // animation: ${hello_animation} 5s infinite;
 `;
+const Nav = styled.div`
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  display: flex;
+  transform: translateX(-50%);
+  aline-items: center;
+  @media only screen and (max-width: 991px) {
+    position: relative;
+    margin: 2rem auto 2rem;
+    left: 0;
+    transform: none;
+  }
+`;
 
 
 const About = () => {
+
+  const navigate = useNavigate();
 
   const [about, setAbout] = useState({});
 
@@ -143,7 +178,7 @@ const About = () => {
     }
 
     return (
-        <div className='wrapper container d-flex flex-column' id='wrapper'>
+        <Wrapper className='container d-flex flex-column' id='wrapper'>
             <Header  >
               <Hello className='poppins-semibold mb-4 light-blue' >Hello, I'm<br/>Kęstutis Vaitiekūnas</Hello>
               <div className='d-flex align-items-center justify-content-end' style={{gridArea: 'media'}}>
@@ -186,7 +221,17 @@ const About = () => {
                 </Skills>
               </Skills>
             </SkillsWrapper>
-        </div>
+            <Nav className='poppins-light'>
+                <div className='nav-button p-2' onClick={() => navigate('/')}>
+                    <p className="poppins-light m-0 no-cursor">HOME</p>
+                </div>
+                <p className="poppins-light mb-0 mt-2 no-cursor px-3" id="pipe">|</p>
+                <div className='nav-button p-2'onClick={() => navigate('/portfolio')}>
+                    <p className="poppins-light m-0 no-cursor">PORTFOLIO</p>
+                </div>
+            </Nav>
+
+        </Wrapper>
     )
 }
 

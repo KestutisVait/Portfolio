@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Info from '../components/project_info'
 import Axios from 'axios';
 import Gallery from '../components/gallery';
+import { useNavigate } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -40,8 +41,17 @@ const Wrapper = styled.div`
         width: 500px;
     }
     `;
+    const Nav = styled.div`
+        position: absolute;
+        bottom: 2%;
+        left: 50%;
+        display: flex;
+        transform: translateX(-50%);
+        aline-items: center;
+    `;
 const Portfolio = () => {
     const screenWidth = window.innerWidth;
+    const navigate = useNavigate();
     // const cards = document.querySelectorAll('.card');
     
     const [showInfo, setShowInfo] = useState(false);
@@ -194,6 +204,15 @@ const Portfolio = () => {
                     />)}
             </Wrapper>
             {showGallery && <Gallery  project={activeProjectId} closeGallery={handleCloseGallery} images={galleryImages}/>}
+            <Nav className='poppins-light'>
+                <div className='nav-button p-2' onClick={() => navigate('/')}>
+                    <p className="poppins-light m-0 no-cursor">HOME</p>
+                </div>
+                <p className="poppins-light mb-0 mt-2 no-cursor px-3" id="pipe">|</p>
+                <div className='nav-button p-2'onClick={() => navigate('/me')}>
+                    <p className="poppins-light m-0 no-cursor">ME</p>
+                </div>
+            </Nav>
         </>
     )
 }
