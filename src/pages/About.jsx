@@ -160,7 +160,7 @@ const About = () => {
     }
 
     const handleDownload = () => {
-      const path = '/Kestutis_Vaitiekunas.pdf';
+      const path = '/cv/Kestutis_Vaitiekunas.pdf';
       const link = document.createElement('a');
       link.download = 'Kestutis_Vaitiekunas.pdf';
       link.href = path;
