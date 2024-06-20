@@ -151,30 +151,22 @@ const About = () => {
         })
     }, [])
 
-    // useEffect(() => {
-    //     function setRandomDuration() {
-    //         const keyframePercentages = [10,25, 35, 50, 59, 75, 85]; 
-          
-    //         keyframePercentages.forEach((percentage) => {
-    //           const duration = Math.random() * 3 + 1; 
-    //           const element = document.getElementById('hello');
-    //           if (element) {
-    //             element.style.setProperty(`--duration-${percentage}`, `${duration}s`);
-    //           };
-    //         });
-    //       }
-    //       setRandomDuration(); 
-    //       setInterval(setRandomDuration, 5000); 
-    // }, [])
-
     useEffect(() => {
-        // document.getElementById('wrapper').style.cssText = 'transform: translate(0,0) scale(1); opacity: 1; transition-duration: 2s;';
         document.getElementById('wrapper').classList.add('fade-n-scale');
     })
 
     const capitalize = (string) => {
-        // return string.charAt(0).toUpperCase() + string.slice(1);
         return string.toUpperCase();
+    }
+
+    const handleDownload = () => {
+      const path = './Kestutis_Vaitiekūnas.pdf';
+      const link = document.createElement('a');
+      link.download = 'Kestutis_Vaitiekūnas.pdf';
+      link.href = path;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
 
     return (
@@ -183,15 +175,21 @@ const About = () => {
               <Hello className='poppins-semibold mb-4 light-blue' >Hello, I'm<br/>Kęstutis Vaitiekūnas</Hello>
               <div className='d-flex align-items-center justify-content-end' style={{gridArea: 'media'}}>
                 <Media 
+                  src='./images/icons/social_media/linkedin.png' 
+                  alt='linked in link' 
+                  onClick={() => window.open(`${about.soc_media_links.linkedin}`, '_blank')}
+                  style={{padding: '2px'}}>
+                </Media>
+                <Media 
                   src='./images/icons/social_media/github.png' 
                   alt='github link'
                   onClick={() => window.open(`${about.soc_media_links.github}`, '_blank')}>
                 </Media>
                 <Media 
-                  src='./images/icons/social_media/linkedin.png' 
-                  alt='linked in link' 
-                  onClick={() => window.open(`${about.soc_media_links.linkedin}`, '_blank')}
-                  style={{padding: '2px'}}>
+                  src='./images/icons/social_media/cv.png'
+                  style={{width: '36px', padding: '2px'}} 
+                  alt='github link'
+                  onClick={handleDownload}>
                 </Media>
               </div>
             </Header>
